@@ -5,4 +5,10 @@
 * Fixes in pubspec file
 
 ## 0.0.3
-* Fixes in pubspec file
+* Adds a example
+
+## 0.0.4
+* Adds API documentation
+
+
+
