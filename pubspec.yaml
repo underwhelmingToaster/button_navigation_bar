@@ -1,7 +1,7 @@
 name: button_navigation_bar
 description: A navigation bar widget.
 version: 0.0.1
-homepage:
+repository: https://github.com/underwhelmingToaster/button_navigation_bar
 
 environment:
   sdk: ">=2.12.0 <3.0.0"

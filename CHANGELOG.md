@@ -1,3 +1,3 @@
-## 1.0.0
+## 0.0.1
 
-* Added first version of plugin
+* Initial release
