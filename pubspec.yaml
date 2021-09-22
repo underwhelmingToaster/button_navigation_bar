@@ -1,6 +1,6 @@
 name: button_navigation_bar
 description: A navigation bar widget.
-version: 0.0.1
+version: 0.0.2
 repository: https://github.com/underwhelmingToaster/button_navigation_bar
 
 environment:
@@ -15,13 +15,13 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-flutter:
-  plugin:
-    platforms:
-      android:
-        package: com.example.button_navigation_bar
-        pluginClass: ButtonNavigationBar
-      ios:
-        pluginClass: ButtonNavigationBar
-      macos:
-        pluginClass: ButtonNavigationBar
+# flutter:
+#  plugin:
+#    platforms:
+#      android:
+#        package: com.example.button_navigation_bar
+#        pluginClass: ButtonNavigationBar
+#      ios:
+#        pluginClass: ButtonNavigationBar
+#      macos:
+#        pluginClass: ButtonNavigationBar
