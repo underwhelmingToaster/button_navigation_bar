@@ -20,7 +20,11 @@ import 'package:flutter/material.dart';
 ///       borderRadius: BorderRadius.zero
 
 class ButtonNavigationBar extends StatelessWidget {
-  ButtonNavigationBar({required this.children, this.padding = EdgeInsets.zero, this.spaceBetweenItems = 1.5, this.borderRadius = const BorderRadius.all(Radius.circular(16))});
+  ButtonNavigationBar(
+      {required this.children,
+      this.padding = EdgeInsets.zero,
+      this.spaceBetweenItems = 1.5,
+      this.borderRadius = const BorderRadius.all(Radius.circular(16))});
 
   final List<ButtonNavigationItem> children;
   final EdgeInsets padding;
@@ -28,18 +32,15 @@ class ButtonNavigationBar extends StatelessWidget {
   final BorderRadius borderRadius;
 
   /// Builds the content inside of the button, depending on if [icon] and [label] have been supplied.
-  Widget childBuilder (Icon? icon, String? label) {
-    if(icon != null && label != null){
+  Widget childBuilder(Icon? icon, String? label) {
+    if (icon != null && label != null) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          icon,
-          Text(label)
-        ],
+        children: [icon, Text(label)],
       );
-    } else if (icon != null){
+    } else if (icon != null) {
       return icon;
-    } else if (label != null){
+    } else if (label != null) {
       return Text(label);
     } else {
       return SizedBox.shrink();
@@ -47,27 +48,29 @@ class ButtonNavigationBar extends StatelessWidget {
   }
 
   /// Gives the outer left- and right buttons the edges, which have been set using [borderRadius]
-  BorderRadius borderBuilder (int position) {
-    if(position == 0){
-      return BorderRadius.only(bottomLeft: borderRadius.bottomLeft, topLeft: borderRadius.topLeft);
-    }else if(position == children.length - 1){
-      return BorderRadius.only(bottomRight: borderRadius.bottomRight, topRight: borderRadius.topRight);
-    }else{
+  BorderRadius borderBuilder(int position) {
+    if (position == 0) {
+      return BorderRadius.only(
+          bottomLeft: borderRadius.bottomLeft, topLeft: borderRadius.topLeft);
+    } else if (position == children.length - 1) {
+      return BorderRadius.only(
+          bottomRight: borderRadius.bottomRight,
+          topRight: borderRadius.topRight);
+    } else {
       return BorderRadius.zero;
     }
   }
 
   /// Creates the actual buttons for the navigation bar
-  SizedBox rowChild (ButtonNavigationItem item, int position) {
+  SizedBox rowChild(ButtonNavigationItem item, int position) {
     return SizedBox(
       child: ElevatedButton(
         onPressed: item.onPressed,
         child: childBuilder(Icon(item.icon), item.label),
         style: ElevatedButton.styleFrom(
           primary: item.color,
-          shape: new RoundedRectangleBorder(
-              borderRadius: borderBuilder(position)
-          ),
+          shape:
+              new RoundedRectangleBorder(borderRadius: borderBuilder(position)),
         ),
       ),
       height: item.height,
@@ -76,12 +79,13 @@ class ButtonNavigationBar extends StatelessWidget {
   }
 
   /// Adds the [rowChild] in one row to be passed to the row widget in [build]
-  List<Widget> rowChildren (List<ButtonNavigationItem> children) {
+  List<Widget> rowChildren(List<ButtonNavigationItem> children) {
     List<Widget> rowChildren = new List.empty(growable: true);
-    for(int i = 0; i < children.length; i++) {
+    for (int i = 0; i < children.length; i++) {
       rowChildren.add(rowChild(children[i], i));
-      if(i != children.length - 1) {
-        rowChildren.add(Padding(padding: EdgeInsets.symmetric(horizontal: spaceBetweenItems)));
+      if (i != children.length - 1) {
+        rowChildren.add(Padding(
+            padding: EdgeInsets.symmetric(horizontal: spaceBetweenItems)));
       }
     }
     return rowChildren;
@@ -98,9 +102,7 @@ class ButtonNavigationBar extends StatelessWidget {
       ),
     );
   }
-
 }
-
 
 /// A ButtonNavigationItem represents one button in the menu bar. Should be inserted in [ButtonNavigationBar.children].
 ///
@@ -111,7 +113,14 @@ class ButtonNavigationBar extends StatelessWidget {
 /// [onPressed] sets the action of the button when pressed.
 
 class ButtonNavigationItem {
-  ButtonNavigationItem({this.label, this.icon, this.color, this.height = 48, this.width = 72, required this.onPressed, });
+  ButtonNavigationItem({
+    this.label,
+    this.icon,
+    this.color,
+    this.height = 48,
+    this.width = 72,
+    required this.onPressed,
+  });
 
   final String? label;
   final IconData? icon;
@@ -120,4 +129,3 @@ class ButtonNavigationItem {
   final double width;
   final VoidCallback onPressed;
 }
-

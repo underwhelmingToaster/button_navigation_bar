@@ -39,43 +39,41 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: SingleChildScrollView(
-        padding: EdgeInsets.all(8),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: CardService().returnCards(cardCounter),
-        )
-      ),
+          padding: EdgeInsets.all(8),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: CardService().returnCards(cardCounter),
+          )),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: ButtonNavigationBar(
         borderRadius: BorderRadius.all(Radius.circular(10)),
         children: [
           ButtonNavigationItem(
-            icon: Icons.map_outlined,
-            onPressed: () {
-              Navigator.push(context,
-                MaterialPageRoute(builder: (BuildContext context) => SubPageOne())
-              );
-            }
-          ),
+              icon: Icons.map_outlined,
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => SubPageOne()));
+              }),
           ButtonNavigationItem(
-            icon: Icons.add,
-            label: "Add a card",
-            width: 140,
-            onPressed: () {
-              setState(() {
-                cardCounter++;
-              });
-            }
-          ),
+              icon: Icons.add,
+              label: "Add a card",
+              width: 140,
+              onPressed: () {
+                setState(() {
+                  cardCounter++;
+                });
+              }),
           ButtonNavigationItem(
-            icon: Icons.search,
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (BuildContext context) => SubPageTwo())
-              );
-            }
-          )
+              icon: Icons.search,
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (BuildContext context) => SubPageTwo()));
+              })
         ],
       ),
     );

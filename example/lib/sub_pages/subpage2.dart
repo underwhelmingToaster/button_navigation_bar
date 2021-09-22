@@ -8,10 +8,7 @@ class SubPageTwo extends StatelessWidget {
       appBar: AppBar(
         title: Text("Page 2"),
       ),
-      body: Center(
-          child: Text("This is a subpage.")
-      ),
+      body: Center(child: Text("This is a subpage.")),
     );
   }
-
 }
