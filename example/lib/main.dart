@@ -46,6 +46,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: CardService().returnCards(cardCounter),
         )
       ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: ButtonNavigationBar(
         borderRadius: BorderRadius.all(Radius.circular(10)),
         children: [
