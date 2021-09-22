@@ -1,1 +1,11 @@
-**/ignore/
+
+# Removing the build folder from the project
+build/
+
+# Removing all folders from example project
+example/build
+example/test
+example/pubspec.lock
+example/button_navigation_bar_example.iml
+example/example.iml
+
