@@ -1,3 +1,7 @@
+import 'package:button_navigation_bar/button_navigation_bar.dart';
+import 'package:example/card_service.dart';
+import 'package:example/sub_pages/subpage1.dart';
+import 'package:example/sub_pages/subpage2.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -26,6 +30,7 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  int cardCounter = 2;
 
   @override
   Widget build(BuildContext context) {
@@ -33,98 +38,44 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Padding(
+      body: SingleChildScrollView(
         padding: EdgeInsets.all(8),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Card(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Padding(padding: EdgeInsets.symmetric(vertical: 5)),
-                  const ListTile(
-                    leading: Icon(Icons.info_outline, color: Colors.lightBlue,),
-                    title: Text('Content Card 1'),
-                    subtitle: Text('Cursus mattis molestie a iaculis at erat pellentesque commodo  dui accumsan.'),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      TextButton(
-                        child: const Text('Action 1'),
-                        onPressed: () { },
-                      ),
-                      const SizedBox(width: 8),
-                      TextButton(
-                        child: const Text('Action 2'),
-                        onPressed: () { },
-                      ),
-                      const SizedBox(width: 8),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Card(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Padding(padding: EdgeInsets.symmetric(vertical: 5)),
-                  const ListTile(
-                    leading: Icon(Icons.info_outline, color: Colors.lightBlue,),
-                    title: Text('Content Card 2'),
-                    subtitle: Text('Cursus mattis molestie a iaculis at erat pellentesque commodo  dui accumsan.'),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      TextButton(
-                        child: const Text('Action 1'),
-                        onPressed: () { },
-                      ),
-                      const SizedBox(width: 8),
-                      TextButton(
-                        child: const Text('Action 2'),
-                        onPressed: () { },
-                      ),
-                      const SizedBox(width: 8),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Card(
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: <Widget>[
-                  Padding(padding: EdgeInsets.symmetric(vertical: 5)),
-                  const ListTile(
-                    leading: Icon(Icons.info_outline, color: Colors.lightBlue,),
-                    title: Text('Content Card 3'),
-                    subtitle: Text('Cursus mattis molestie a iaculis at erat pellentesque commodo  dui accumsan.'),
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: <Widget>[
-                      TextButton(
-                        child: const Text('Action 1'),
-                        onPressed: () { },
-                      ),
-                      const SizedBox(width: 8),
-                      TextButton(
-                        child: const Text('Action 2'),
-                        onPressed: () { },
-                      ),
-                      const SizedBox(width: 8),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
+          children: CardService().returnCards(cardCounter),
+        )
+      ),
+      floatingActionButton: ButtonNavigationBar(
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+        children: [
+          ButtonNavigationItem(
+            icon: Icons.map_outlined,
+            onPressed: () {
+              Navigator.push(context,
+                MaterialPageRoute(builder: (BuildContext context) => SubPageOne())
+              );
+            }
+          ),
+          ButtonNavigationItem(
+            icon: Icons.add,
+            label: "Add a card",
+            width: 140,
+            onPressed: () {
+              setState(() {
+                cardCounter++;
+              });
+            }
+          ),
+          ButtonNavigationItem(
+            icon: Icons.search,
+            onPressed: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (BuildContext context) => SubPageTwo())
+              );
+            }
+          )
+        ],
       ),
     );
   }
