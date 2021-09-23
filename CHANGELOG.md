@@ -13,6 +13,3 @@
 ## 0.0.5
 * Expanded readme
 * Improved example
-
-
-

@@ -1,5 +1,7 @@
 library button_navigation_bar;
 
+import 'dart:ffi';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,17 +21,24 @@ import 'package:flutter/material.dart';
 ///   - No edges:
 ///       borderRadius: BorderRadius.zero
 
-class ButtonNavigationBar extends StatelessWidget {
-  ButtonNavigationBar(
-      {required this.children,
-      this.padding = EdgeInsets.zero,
-      this.spaceBetweenItems = 1.5,
-      this.borderRadius = const BorderRadius.all(Radius.circular(16))});
-
+class ButtonNavigationBar extends StatefulWidget {
   final List<ButtonNavigationItem> children;
   final EdgeInsets padding;
   final double spaceBetweenItems;
   final BorderRadius borderRadius;
+
+  ButtonNavigationBar({
+    required this.children,
+    this.padding = EdgeInsets.zero,
+    this.spaceBetweenItems = 1.5,
+    this.borderRadius = const BorderRadius.all(Radius.circular(16))});
+
+  @override
+  _ButtonNavigationBarState createState() => _ButtonNavigationBarState();
+}
+
+
+class _ButtonNavigationBarState extends State<ButtonNavigationBar> {
 
   /// Builds the content inside of the button, depending on if [icon] and [label] have been supplied.
   Widget childBuilder(Icon? icon, String? label) {
@@ -51,11 +60,11 @@ class ButtonNavigationBar extends StatelessWidget {
   BorderRadius borderBuilder(int position) {
     if (position == 0) {
       return BorderRadius.only(
-          bottomLeft: borderRadius.bottomLeft, topLeft: borderRadius.topLeft);
-    } else if (position == children.length - 1) {
+          bottomLeft: widget.borderRadius.bottomLeft, topLeft: widget.borderRadius.topLeft);
+    } else if (position == widget.children.length - 1) {
       return BorderRadius.only(
-          bottomRight: borderRadius.bottomRight,
-          topRight: borderRadius.topRight);
+          bottomRight: widget.borderRadius.bottomRight,
+          topRight: widget.borderRadius.topRight);
     } else {
       return BorderRadius.zero;
     }
@@ -85,7 +94,7 @@ class ButtonNavigationBar extends StatelessWidget {
       rowChildren.add(rowChild(children[i], i));
       if (i != children.length - 1) {
         rowChildren.add(Padding(
-            padding: EdgeInsets.symmetric(horizontal: spaceBetweenItems)));
+            padding: EdgeInsets.symmetric(horizontal: widget.spaceBetweenItems)));
       }
     }
     return rowChildren;
@@ -94,11 +103,11 @@ class ButtonNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: padding,
+      padding: widget.padding,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: rowChildren(children),
+        children: rowChildren(widget.children),
       ),
     );
   }
@@ -120,6 +129,36 @@ class ButtonNavigationItem {
     this.height = 48,
     this.width = 72,
     required this.onPressed,
+  }) : children = null;
+
+  ButtonNavigationItem.expandable({
+    this.label,
+    this.icon,
+    this.color,
+    this.height = 48,
+    this.width = 72,
+    required this.children,
+  }) : onPressed = null;
+
+  final String? label;
+  final IconData? icon;
+  final Color? color;
+  final double height;
+  final double width;
+  final VoidCallback? onPressed;
+  final List<ButtonNavigationExpandable>? children;
+
+
+}
+
+class ButtonNavigationExpandable {
+  ButtonNavigationExpandable({
+    this.label,
+    this.icon,
+    this.color,
+    this.height = 48,
+    this.width = 72,
+    required this.onPressed,
   });
 
   final String? label;
@@ -129,3 +168,4 @@ class ButtonNavigationItem {
   final double width;
   final VoidCallback onPressed;
 }
+
