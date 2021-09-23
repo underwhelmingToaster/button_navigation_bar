@@ -10,6 +10,7 @@ When using this Widget as a Navbar, the 'floatingactionbutton' of a scaffold can
 desired positioning of the Widget, as seen in the two examples below.
 
 ![Example 1](https://raw.githubusercontent.com/underwhelmingToaster/button_navigation_bar/master/example/images/example1.png "Example 1") | ![Example 2](https://raw.githubusercontent.com/underwhelmingToaster/button_navigation_bar/master/example/images/example2.png "Example 2")
+----------|----------
 Example 1 | Example 2
 
 # Contributing to this plugin
