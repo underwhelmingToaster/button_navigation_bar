@@ -13,9 +13,8 @@ class CardService {
             ListTile(
               leading: Icon(
                 Icons.info_outline,
-                color: Colors.lightBlue,
               ),
-              title: Text('Content Card ${i.toString()}'),
+              title: Text('Content Card ${(i + 1).toString()}'),
               subtitle: Text(
                   'Cursus mattis molestie a iaculis at erat pellentesque commodo  dui accumsan.'),
             ),

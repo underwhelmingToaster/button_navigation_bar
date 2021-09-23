@@ -8,4 +8,5 @@ example/test
 example/pubspec.lock
 example/button_navigation_bar_example.iml
 example/example.iml
+example/images/*
 
