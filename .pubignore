@@ -2,11 +2,13 @@
 # Removing the build folder from the project
 build/
 
-# Removing all folders from example project
+# Removing all folders from example project except lib, ios and android
 example/build
 example/test
 example/pubspec.lock
 example/button_navigation_bar_example.iml
 example/example.iml
 example/images/*
+example/windows/
+example/web/
 

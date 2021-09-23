@@ -10,5 +10,9 @@
 ## 0.0.4
 * Adds API documentation
 
+# 0.0.5
+* Expanded readme
+* Improved example
+
 
 

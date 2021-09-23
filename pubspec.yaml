@@ -1,6 +1,6 @@
 name: button_navigation_bar
 description: A lightweight, customizable navigation bar widget for flutter which can be used as a FAB as well as a fixed Widget.
-version: 0.0.4
+version: 0.0.5
 repository: https://github.com/underwhelmingToaster/button_navigation_bar
 
 environment:
