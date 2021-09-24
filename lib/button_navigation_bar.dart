@@ -1,7 +1,6 @@
 library button_navigation_bar;
 
-import 'dart:ffi';
-
+import 'package:button_navigation_bar/src/animationController.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -27,19 +26,17 @@ class ButtonNavigationBar extends StatefulWidget {
   final double spaceBetweenItems;
   final BorderRadius borderRadius;
 
-  ButtonNavigationBar({
-    required this.children,
-    this.padding = EdgeInsets.zero,
-    this.spaceBetweenItems = 1.5,
-    this.borderRadius = const BorderRadius.all(Radius.circular(16))});
+  ButtonNavigationBar(
+      {required this.children,
+      this.padding = EdgeInsets.zero,
+      this.spaceBetweenItems = 1.5,
+      this.borderRadius = const BorderRadius.all(Radius.circular(16))});
 
   @override
   _ButtonNavigationBarState createState() => _ButtonNavigationBarState();
 }
 
-
 class _ButtonNavigationBarState extends State<ButtonNavigationBar> {
-
   /// Builds the content inside of the button, depending on if [icon] and [label] have been supplied.
   Widget childBuilder(Icon? icon, String? label) {
     if (icon != null && label != null) {
@@ -56,11 +53,12 @@ class _ButtonNavigationBarState extends State<ButtonNavigationBar> {
     }
   }
 
-  /// Gives the outer left- and right buttons the edges, which have been set using [borderRadius]
+  /// Gives the outer left- and right buttons the edges, which have been set using [ButtonNavigationBar.borderRadius]
   BorderRadius borderBuilder(int position) {
     if (position == 0) {
       return BorderRadius.only(
-          bottomLeft: widget.borderRadius.bottomLeft, topLeft: widget.borderRadius.topLeft);
+          bottomLeft: widget.borderRadius.bottomLeft,
+          topLeft: widget.borderRadius.topLeft);
     } else if (position == widget.children.length - 1) {
       return BorderRadius.only(
           bottomRight: widget.borderRadius.bottomRight,
@@ -70,8 +68,28 @@ class _ButtonNavigationBarState extends State<ButtonNavigationBar> {
     }
   }
 
-  /// Creates the actual buttons for the navigation bar
+  /// Checks if [item] is a expandable button and returns a [SizedBox].
+  /// SizedBox contains a [ElevatedButton] when [item] doesn't have any children.
+  /// SizedBox contains a [ExpandableRowChildButton] when [item] has children.
   SizedBox rowChild(ButtonNavigationItem item, int position) {
+    VoidCallback? onPressed;
+    if (item.children != null) {
+      /// When the item has children, it is a expandable button ([ButtonNavigationItem.expandable]).
+      return SizedBox(
+        child: ExpandableRowChildButton(
+          distance: 100.0,
+          children: [
+            Text("lol"),
+            Text("lol"),
+          ],
+        ),
+      );
+    } else {
+      return buildRowChildButton(item, position);
+    }
+  }
+
+  SizedBox buildRowChildButton(ButtonNavigationItem item, int position) {
     return SizedBox(
       child: ElevatedButton(
         onPressed: item.onPressed,
@@ -94,7 +112,8 @@ class _ButtonNavigationBarState extends State<ButtonNavigationBar> {
       rowChildren.add(rowChild(children[i], i));
       if (i != children.length - 1) {
         rowChildren.add(Padding(
-            padding: EdgeInsets.symmetric(horizontal: widget.spaceBetweenItems)));
+            padding:
+                EdgeInsets.symmetric(horizontal: widget.spaceBetweenItems)));
       }
     }
     return rowChildren;
@@ -122,6 +141,14 @@ class _ButtonNavigationBarState extends State<ButtonNavigationBar> {
 /// [onPressed] sets the action of the button when pressed.
 
 class ButtonNavigationItem {
+  final String? label;
+  final IconData? icon;
+  final Color? color;
+  final double height;
+  final double width;
+  final VoidCallback? onPressed;
+  final List<ButtonNavigationExpandable>? children;
+
   ButtonNavigationItem({
     this.label,
     this.icon,
@@ -139,16 +166,6 @@ class ButtonNavigationItem {
     this.width = 72,
     required this.children,
   }) : onPressed = null;
-
-  final String? label;
-  final IconData? icon;
-  final Color? color;
-  final double height;
-  final double width;
-  final VoidCallback? onPressed;
-  final List<ButtonNavigationExpandable>? children;
-
-
 }
 
 class ButtonNavigationExpandable {
@@ -168,4 +185,3 @@ class ButtonNavigationExpandable {
   final double width;
   final VoidCallback onPressed;
 }
-

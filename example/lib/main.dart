@@ -86,14 +86,28 @@ class _MyHomePageState extends State<MyHomePage> {
                   }
                 });
               }),
-          ButtonNavigationItem(
-              icon: Icons.search,
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => SubPageTwo()));
-              })
+          ButtonNavigationItem.expandable(
+              children: [
+                ButtonNavigationExpandable(
+                    label: "lol",
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => SubPageTwo()));
+                    }
+                ),
+                ButtonNavigationExpandable(
+                    label: "lol 2",
+                    onPressed: () {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => SubPageTwo()));
+                    }
+                )
+              ]
+          )
         ],
       ),
     );
@@ -131,12 +145,11 @@ class _MyHomePageState extends State<MyHomePage> {
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => SubPageTwo()));
-              })
+              }),
         ],
       ),
     );
   }
-
 
   AppBar appBar(BuildContext context) {
     return AppBar(
