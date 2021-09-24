@@ -1,3 +1,5 @@
+import 'package:button_navigation_bar/button_navigation_bar.dart';
+import 'package:button_navigation_bar/src/builder.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
@@ -9,11 +11,19 @@ class ExpandableRowChildButton extends StatefulWidget {
     this.initialOpen,
     required this.distance,
     required this.children,
+    required this.position,
+    required this.navBarLength,
+    required this.borderRadius,
+    required this.item,
   }) : super(key: key);
 
   final bool? initialOpen;
   final double distance;
-  final List<Widget> children;
+  final List<ButtonNavigationExpandable> children;
+  final int position;
+  final int navBarLength;
+  final BorderRadius borderRadius;
+  final ButtonNavigationItem item;
 
   @override
   _ExpandableRowChildButtonState createState() =>
@@ -62,14 +72,15 @@ class _ExpandableRowChildButtonState extends State<ExpandableRowChildButton>
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 500,
+      height: 300, // TODO Remove once done?
       child: Stack(
         alignment: Alignment.bottomRight,
         clipBehavior: Clip.none,
         children: [
           _buildTapToCloseFab(),
           ..._buildExpandingActionButtons(),
-          _buildTapToOpenFab(),
+          _buildTapToOpenFab(widget.item, widget.position, widget.navBarLength,
+              widget.borderRadius),
         ],
       ),
     );
@@ -99,6 +110,7 @@ class _ExpandableRowChildButtonState extends State<ExpandableRowChildButton>
     );
   }
 
+  /// Builds the Buttons that are displayed when the [ButtonNavigationItem.expandable] gets clicked.
   List<Widget> _buildExpandingActionButtons() {
     final children = <Widget>[];
     final count = widget.children.length;
@@ -111,14 +123,25 @@ class _ExpandableRowChildButtonState extends State<ExpandableRowChildButton>
           directionInDegrees: angleInDegrees,
           maxDistance: widget.distance,
           progress: _expandAnimation,
-          child: widget.children[i],
+          child: NavBarBuilder()
+              .childBuilder(widget.children[i].icon, widget.children[i].label),
         ),
       );
     }
     return children;
   }
 
-  Widget _buildTapToOpenFab() {
+  /// Builds the expandable button.
+  ///  Note that this same button doesn't close the expandable again. For this purpose, the [_buildTapToCloseFab] button is used.
+  Widget _buildTapToOpenFab(ButtonNavigationItem item, int position,
+      int navBarLength, BorderRadius borderRadius) {
+    ButtonNavigationItem expandableItem = ButtonNavigationItem(
+        onPressed: _toggle,
+        icon: item.icon,
+        label: item.label,
+        color: item.color,
+        height: item.height,
+        width: item.width);
     return IgnorePointer(
       ignoring: _open,
       child: AnimatedContainer(
@@ -134,10 +157,8 @@ class _ExpandableRowChildButtonState extends State<ExpandableRowChildButton>
           opacity: _open ? 0.0 : 1.0,
           curve: const Interval(0.25, 1.0, curve: Curves.easeInOut),
           duration: const Duration(milliseconds: 250),
-          child: ElevatedButton(
-            onPressed: _toggle,
-            child: const Icon(Icons.create),
-          ),
+          child: NavBarBuilder().buildRowChildButton(
+              expandableItem, position, navBarLength, borderRadius),
         ),
       ),
     );

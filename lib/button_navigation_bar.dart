@@ -1,6 +1,7 @@
 library button_navigation_bar;
 
-import 'package:button_navigation_bar/src/animationController.dart';
+import 'package:button_navigation_bar/src/animation_controller.dart';
+import 'package:button_navigation_bar/src/builder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -37,79 +38,12 @@ class ButtonNavigationBar extends StatefulWidget {
 }
 
 class _ButtonNavigationBarState extends State<ButtonNavigationBar> {
-  /// Builds the content inside of the button, depending on if [icon] and [label] have been supplied.
-  Widget childBuilder(Icon? icon, String? label) {
-    if (icon != null && label != null) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [icon, Text(label)],
-      );
-    } else if (icon != null) {
-      return icon;
-    } else if (label != null) {
-      return Text(label);
-    } else {
-      return SizedBox.shrink();
-    }
-  }
-
-  /// Gives the outer left- and right buttons the edges, which have been set using [ButtonNavigationBar.borderRadius]
-  BorderRadius borderBuilder(int position) {
-    if (position == 0) {
-      return BorderRadius.only(
-          bottomLeft: widget.borderRadius.bottomLeft,
-          topLeft: widget.borderRadius.topLeft);
-    } else if (position == widget.children.length - 1) {
-      return BorderRadius.only(
-          bottomRight: widget.borderRadius.bottomRight,
-          topRight: widget.borderRadius.topRight);
-    } else {
-      return BorderRadius.zero;
-    }
-  }
-
-  /// Checks if [item] is a expandable button and returns a [SizedBox].
-  /// SizedBox contains a [ElevatedButton] when [item] doesn't have any children.
-  /// SizedBox contains a [ExpandableRowChildButton] when [item] has children.
-  SizedBox rowChild(ButtonNavigationItem item, int position) {
-    VoidCallback? onPressed;
-    if (item.children != null) {
-      /// When the item has children, it is a expandable button ([ButtonNavigationItem.expandable]).
-      return SizedBox(
-        child: ExpandableRowChildButton(
-          distance: 100.0,
-          children: [
-            Text("lol"),
-            Text("lol"),
-          ],
-        ),
-      );
-    } else {
-      return buildRowChildButton(item, position);
-    }
-  }
-
-  SizedBox buildRowChildButton(ButtonNavigationItem item, int position) {
-    return SizedBox(
-      child: ElevatedButton(
-        onPressed: item.onPressed,
-        child: childBuilder(Icon(item.icon), item.label),
-        style: ElevatedButton.styleFrom(
-          primary: item.color,
-          shape:
-              new RoundedRectangleBorder(borderRadius: borderBuilder(position)),
-        ),
-      ),
-      height: item.height,
-      width: item.width,
-    );
-  }
-
-  /// Adds the [rowChild] in one row to be passed to the row widget in [build]
+  /// Adds the [rowChildBuilder] in one row to be passed to the row widget in [build]
   List<Widget> rowChildren(List<ButtonNavigationItem> children) {
     List<Widget> rowChildren = new List.empty(growable: true);
     for (int i = 0; i < children.length; i++) {
-      rowChildren.add(rowChild(children[i], i));
+      rowChildren.add(NavBarBuilder().rowChildBuilder(
+          children[i], i, children.length, widget.borderRadius));
       if (i != children.length - 1) {
         rowChildren.add(Padding(
             padding:
@@ -125,7 +59,7 @@ class _ButtonNavigationBarState extends State<ButtonNavigationBar> {
       padding: widget.padding,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.end,
         children: rowChildren(widget.children),
       ),
     );

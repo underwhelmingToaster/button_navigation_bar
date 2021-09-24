@@ -86,28 +86,24 @@ class _MyHomePageState extends State<MyHomePage> {
                   }
                 });
               }),
-          ButtonNavigationItem.expandable(
-              children: [
-                ButtonNavigationExpandable(
-                    label: "lol",
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) => SubPageTwo()));
-                    }
-                ),
-                ButtonNavigationExpandable(
-                    label: "lol 2",
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (BuildContext context) => SubPageTwo()));
-                    }
-                )
-              ]
-          )
+          ButtonNavigationItem.expandable(icon: Icons.expand_less, children: [
+            ButtonNavigationExpandable(
+                label: "lol",
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => SubPageTwo()));
+                }),
+            ButtonNavigationExpandable(
+                label: "lol 2",
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (BuildContext context) => SubPageTwo()));
+                })
+          ])
         ],
       ),
     );
