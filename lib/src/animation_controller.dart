@@ -77,7 +77,8 @@ class _ExpandableRowChildButtonState extends State<ExpandableRowChildButton>
         alignment: Alignment.bottomRight,
         clipBehavior: Clip.none,
         children: [
-          _buildTapToCloseFab(),
+          _buildTapToCloseFab(widget.item, widget.position, widget.navBarLength,
+              widget.borderRadius),
           ..._buildExpandingActionButtons(),
           _buildTapToOpenFab(widget.item, widget.position, widget.navBarLength,
               widget.borderRadius),
@@ -86,28 +87,12 @@ class _ExpandableRowChildButtonState extends State<ExpandableRowChildButton>
     );
   }
 
-  Widget _buildTapToCloseFab() {
-    return SizedBox(
-      width: 56.0,
-      height: 56.0,
-      child: Center(
-        child: Material(
-          shape: const CircleBorder(),
-          clipBehavior: Clip.antiAlias,
-          elevation: 4.0,
-          child: InkWell(
-            onTap: _toggle,
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Icon(
-                Icons.close,
-                color: Theme.of(context).primaryColor,
-              ),
-            ),
-          ),
-        ),
-      ),
-    );
+  Widget _buildTapToCloseFab(ButtonNavigationItem item, int position, int navBarLength, BorderRadius borderRadius) {
+    ButtonNavigationItem? collapseButton = item.collapseButton;
+    if(collapseButton == null) {
+      collapseButton = new ButtonNavigationItem(onPressed: _toggle, icon: Icons.close); // Defining the default collapse button
+    }
+    return NavBarBuilder().buildRowChildButton(collapseButton, position, navBarLength, borderRadius);
   }
 
   /// Builds the Buttons that are displayed when the [ButtonNavigationItem.expandable] gets clicked.
