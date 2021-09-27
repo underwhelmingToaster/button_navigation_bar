@@ -73,7 +73,9 @@ class _ButtonNavigationBarState extends State<ButtonNavigationBar> {
 /// [color] sets the color of the button. Buttons in the same menu can have different colors.
 /// [height] and [width] set the dimensions of the button. If left emtpy, height is 48 and with 72.
 /// [onPressed] sets the action of the button when pressed.
-/// [collapseButton] allows to customize the button which collapses the expanded buttons again.
+/// [collapseButton] allows to customize the button which collapses the expanded buttons again. onPressed of a widget is always overwritten when using it here.
+/// [expandableSpacing] can be used to define the spacing between the expandable buttons.
+/// [verticalOffset] can be used to define the spacing between the [ButtonNavigationItem] and the first expandable Item.
 
 class ButtonNavigationItem {
   final String? label;
@@ -84,6 +86,8 @@ class ButtonNavigationItem {
   final VoidCallback? onPressed;
   final List<Widget>? children;
   final ButtonNavigationItem? collapseButton;
+  final double expandableSpacing;
+  final double verticalOffset;
 
   ButtonNavigationItem({
     this.label,
@@ -94,7 +98,9 @@ class ButtonNavigationItem {
     required this.onPressed,
   }) :
     children = null,
-    collapseButton = null;
+    collapseButton = null,
+    expandableSpacing = 0,
+    verticalOffset = 0;
 
   ButtonNavigationItem.expandable({
     this.label,
@@ -103,7 +109,9 @@ class ButtonNavigationItem {
     this.height = 48,
     this.width = 72,
     required this.children,
-    this.collapseButton
+    this.collapseButton,
+    this.expandableSpacing = 50.0,
+    this.verticalOffset = 50.0
   }) : onPressed = null;
 }
 

@@ -72,7 +72,7 @@ class _ExpandableRowChildButtonState extends State<ExpandableRowChildButton>
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 300, // TODO Remove once done?
+      height: 300,
       child: Stack(
         alignment: Alignment.bottomCenter,
         clipBehavior: Clip.none,
@@ -87,10 +87,13 @@ class _ExpandableRowChildButtonState extends State<ExpandableRowChildButton>
     );
   }
 
+  /// Builds the button which gets displayed when the expandable button gets clicked. Clicking this button will close the expandable again.
   Widget _buildTapToCloseFab(ButtonNavigationItem item, int position, int navBarLength, BorderRadius borderRadius) {
     ButtonNavigationItem? collapseButton = item.collapseButton;
     if(collapseButton == null) {
       collapseButton = new ButtonNavigationItem(onPressed: _toggle, icon: Icons.close); // Defining the default collapse button
+    } else {
+      collapseButton = new ButtonNavigationItem(onPressed: _toggle, icon: collapseButton.icon, color: collapseButton.color, width: collapseButton.width, height: collapseButton.height, label: collapseButton.label); // Overriding the onPressed parameter
     }
     return NavBarBuilder().buildRowChildButton(collapseButton, position, navBarLength, borderRadius);
   }
@@ -99,7 +102,7 @@ class _ExpandableRowChildButtonState extends State<ExpandableRowChildButton>
   List<Widget> _buildExpandingActionButtons() {
     final children = <Widget>[];
     final count = widget.children.length;
-    final step = 50;
+    final step = widget.item.expandableSpacing;
     for (var i = 0;
         i < count;
         i++) {

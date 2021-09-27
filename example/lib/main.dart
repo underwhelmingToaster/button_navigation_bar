@@ -71,7 +71,16 @@ class _MyHomePageState extends State<MyHomePage> {
                   cardCounter++;
                 });
               }),
-          ButtonNavigationItem.expandable(icon: Icons.expand_less, children: [
+          ButtonNavigationItem.expandable(
+              expandableSpacing: 50.0,
+              verticalOffset: 50.0,
+              icon: Icons.expand_less,
+              collapseButton: ButtonNavigationItem(
+                  onPressed: () { },
+                  color: Colors.blueGrey,
+                  icon: Icons.close
+              ),
+              children: [
             ButtonNavigationExpandable(
               onPressed: () { },
               label: "Label 1",
