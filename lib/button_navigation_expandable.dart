@@ -11,19 +11,29 @@ class ButtonNavigationExpandable extends StatelessWidget {
     this.color,
     this.height,
     this.width,
+    this.borderRadius,
     required this.onPressed,
   });
 
   /// The [label] defines the text inside of the button.
   final String? label;
+
   /// The icon inside of the button.
   final Icon? icon;
+
   /// The color of the button.
   final Color? color;
+
   /// Height of the button.
   final double? height;
+
   /// Width of the button.
   final double? width;
+
+  /// [BorderRadius] can be used to make rounded Buttons.
+  final BorderRadius? borderRadius;
+
+  /// Sets triggered action when button is pressed.
   final VoidCallback onPressed;
 
   Widget _childBuilder(Icon? icon, String? label) {
@@ -45,9 +55,20 @@ class ButtonNavigationExpandable extends StatelessWidget {
     }
   }
 
-  ButtonStyle? _buttonStyle(Color? color) {
-    if (color != null) {
-      ButtonStyle(
+  ButtonStyle? _buttonStyle(Color? color, BorderRadius? borderRadius) {
+    if (color != null && borderRadius != null) {
+      return ButtonStyle(
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(borderRadius: borderRadius)),
+        foregroundColor: MaterialStateProperty.all<Color>(color),
+      );
+    } else if (borderRadius != null) {
+      return ButtonStyle(
+        shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+            RoundedRectangleBorder(borderRadius: borderRadius)),
+      );
+    } else if (color != null) {
+      return ButtonStyle(
         foregroundColor: MaterialStateProperty.all<Color>(color),
       );
     } else {
@@ -62,7 +83,7 @@ class ButtonNavigationExpandable extends StatelessWidget {
       height: height,
       child: ElevatedButton(
         onPressed: onPressed,
-        style: _buttonStyle(color),
+        style: _buttonStyle(color, borderRadius),
         child: _childBuilder(icon, label),
       ),
     );

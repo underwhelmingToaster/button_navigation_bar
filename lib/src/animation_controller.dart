@@ -1,9 +1,9 @@
 import 'package:button_navigation_bar/button_navigation_bar.dart';
+import 'package:button_navigation_bar/button_navigation_expandable.dart';
 import 'package:button_navigation_bar/src/builder.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
-import 'package:button_navigation_bar/button_navigation_expandable.dart';
 
 
 /// This Widget is generated from a [ButtonNavigationItem.expandable].
@@ -13,19 +13,24 @@ import 'package:button_navigation_bar/button_navigation_expandable.dart';
 class ExpandableRowChildButton extends StatefulWidget {
   /// [initialOpen] defines if the menu is expanded when initially loading the widget.
   final bool? initialOpen;
+
   /// [distance] the offset of the first expandable widget from the expandable Button
   final double distance;
+
   /// [children] are the widgets which will be shown when expanding
   final List<Widget> children;
+
   /// [position] is the position of the button in the navbar, 0 being the leftmost
   final int position;
+
   /// [navBarLength] is the number of buttons in the navbar.
   final int navBarLength;
+
   /// [borderRadius] is setting the edges of the navbar.
   final BorderRadius borderRadius;
 
+  /// The [ButtonNavigationItem.expandable] which contains styling information.
   final ButtonNavigationItem item;
-
 
   const ExpandableRowChildButton({
     Key? key,

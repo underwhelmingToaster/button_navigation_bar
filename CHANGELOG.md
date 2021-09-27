@@ -19,3 +19,8 @@
 * Added button_navigation_expandable.dart
 * Usability improvements
 * Improved README
+
+## 0.1.1
+* Replaced all Icondata? params with Icon?. This allows the user to easily set icon color and size.
+* Improved dartdoc
+* Improved code formatting

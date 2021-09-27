@@ -72,11 +72,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 });
               }),
           ButtonNavigationItem.expandable(
-              expandableSpacing: 56.0,
+              expandableSpacing: 48.0,
               verticalOffset: 56.0,
               icon: Icon(Icons.expand_less),
               collapseButton: ButtonNavigationItem(
-                  onPressed: () {}, color: Colors.blueGrey, icon: Icon(Icons.close)),
+                  onPressed: () {},
+                  color: Colors.blueGrey,
+                  icon: Icon(Icons.close)),
               children: [
                 ButtonNavigationExpandable(
                   onPressed: () {},
