@@ -82,7 +82,7 @@ class ButtonNavigationItem {
   final double height;
   final double width;
   final VoidCallback? onPressed;
-  final List<ButtonNavigationExpandable>? children;
+  final List<Widget>? children;
   final ButtonNavigationItem? collapseButton;
 
   ButtonNavigationItem({
@@ -107,20 +107,5 @@ class ButtonNavigationItem {
   }) : onPressed = null;
 }
 
-class ButtonNavigationExpandable {
-  ButtonNavigationExpandable({
-    this.label,
-    this.icon,
-    this.color,
-    this.height = 48,
-    this.width = 72,
-    required this.onPressed,
-  });
 
-  final String? label;
-  final IconData? icon;
-  final Color? color;
-  final double height;
-  final double width;
-  final VoidCallback onPressed;
-}
+

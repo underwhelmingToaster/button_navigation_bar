@@ -19,7 +19,7 @@ class ExpandableRowChildButton extends StatefulWidget {
 
   final bool? initialOpen;
   final double distance;
-  final List<ButtonNavigationExpandable> children;
+  final List<Widget> children;
   final int position;
   final int navBarLength;
   final BorderRadius borderRadius;
@@ -108,8 +108,7 @@ class _ExpandableRowChildButtonState extends State<ExpandableRowChildButton>
           directionInDegrees: angleInDegrees,
           maxDistance: widget.distance,
           progress: _expandAnimation,
-          child: NavBarBuilder()
-              .childBuilder(widget.children[i].icon, widget.children[i].label),
+          child: widget.children[i],
         ),
       );
     }

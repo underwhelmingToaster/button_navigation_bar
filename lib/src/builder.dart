@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../button_navigation_bar.dart';
+import '../button_navigation_expandable.dart';
 import 'animation_controller.dart';
 
 /// Class containing multiple builder functions, so both

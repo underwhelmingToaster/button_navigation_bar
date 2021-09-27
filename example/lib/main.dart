@@ -1,4 +1,5 @@
 import 'package:button_navigation_bar/button_navigation_bar.dart';
+import 'package:button_navigation_bar/button_navigation_expandable.dart';
 import 'package:example/card_service.dart';
 import 'package:example/sub_pages/subpage1.dart';
 import 'package:example/sub_pages/subpage2.dart';
@@ -88,21 +89,13 @@ class _MyHomePageState extends State<MyHomePage> {
               }),
           ButtonNavigationItem.expandable(icon: Icons.expand_less, children: [
             ButtonNavigationExpandable(
-                label: "lol",
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => SubPageTwo()));
-                }),
+              onPressed: () { },
+              label: "Label 1"
+            ),
             ButtonNavigationExpandable(
-                label: "lol 2",
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (BuildContext context) => SubPageTwo()));
-                })
+                onPressed: () { },
+                label: "Label 2"
+            ),
           ])
         ],
       ),
