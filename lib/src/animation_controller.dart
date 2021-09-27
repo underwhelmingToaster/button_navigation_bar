@@ -74,7 +74,7 @@ class _ExpandableRowChildButtonState extends State<ExpandableRowChildButton>
     return SizedBox(
       height: 300, // TODO Remove once done?
       child: Stack(
-        alignment: Alignment.bottomRight,
+        alignment: Alignment.bottomCenter,
         clipBehavior: Clip.none,
         children: [
           _buildTapToCloseFab(widget.item, widget.position, widget.navBarLength,
@@ -99,14 +99,14 @@ class _ExpandableRowChildButtonState extends State<ExpandableRowChildButton>
   List<Widget> _buildExpandingActionButtons() {
     final children = <Widget>[];
     final count = widget.children.length;
-    final step = 90.0 / (count - 1);
-    for (var i = 0, angleInDegrees = 0.0;
+    final step = 50;
+    for (var i = 0;
         i < count;
-        i++, angleInDegrees += step) {
+        i++) {
       children.add(
         _ExpandingActionButton(
-          directionInDegrees: angleInDegrees,
-          maxDistance: widget.distance,
+          directionInDegrees: 90,
+          maxDistance: widget.distance + i * step,
           progress: _expandAnimation,
           child: widget.children[i],
         ),
@@ -174,7 +174,6 @@ class _ExpandingActionButton extends StatelessWidget {
           progress.value * maxDistance,
         );
         return Positioned(
-          right: 4.0 + offset.dx,
           bottom: 4.0 + offset.dy,
           child: Transform.rotate(
             angle: (1.0 - progress.value) * math.pi / 2,

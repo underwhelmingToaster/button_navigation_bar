@@ -7,7 +7,7 @@ class ButtonNavigationExpandable extends StatelessWidget {
     this.label,
     this.icon,
     this.color,
-    this.height = 48,
+    this.height = 40,
     this.width = 72,
     required this.onPressed,
   });
@@ -37,6 +37,8 @@ class ButtonNavigationExpandable extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
+      width: width,
+      height: height,
       child: ElevatedButton(
         onPressed: onPressed,
         child: childBuilder(icon, label),

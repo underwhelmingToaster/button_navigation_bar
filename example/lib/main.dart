@@ -71,6 +71,18 @@ class _MyHomePageState extends State<MyHomePage> {
                   cardCounter++;
                 });
               }),
+          ButtonNavigationItem.expandable(icon: Icons.expand_less, children: [
+            ButtonNavigationExpandable(
+              onPressed: () { },
+              label: "Label 1",
+              icon: Icons.label,
+              width: 100,
+            ),
+            ButtonNavigationExpandable(
+              onPressed: () { },
+              label: "Label 2"
+            ),
+          ]),
           ButtonNavigationItem(
               icon: Icons.view_stream_sharp,
               onPressed: () {
@@ -87,16 +99,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   }
                 });
               }),
-          ButtonNavigationItem.expandable(icon: Icons.expand_less, children: [
-            ButtonNavigationExpandable(
-              onPressed: () { },
-              label: "Label 1"
-            ),
-            ButtonNavigationExpandable(
-                onPressed: () { },
-                label: "Label 2"
-            ),
-          ])
         ],
       ),
     );

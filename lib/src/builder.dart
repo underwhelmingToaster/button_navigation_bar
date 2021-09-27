@@ -44,7 +44,7 @@ class NavBarBuilder {
       int position, int navBarLength, BorderRadius borderRadius) {
     return SizedBox(
       child: ExpandableRowChildButton(
-        distance: 100.0,
+        distance: 50.0,
         children: item.children!,
         borderRadius: borderRadius,
         navBarLength: navBarLength,
