@@ -1,5 +1,7 @@
 library button_navigation_bar;
 
+import 'package:button_navigation_bar/src/animation_controller.dart';
+import 'package:button_navigation_bar/src/builder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -19,73 +21,33 @@ import 'package:flutter/material.dart';
 ///   - No edges:
 ///       borderRadius: BorderRadius.zero
 
-class ButtonNavigationBar extends StatelessWidget {
+class ButtonNavigationBar extends StatefulWidget {
+  final List<ButtonNavigationItem> children;
+  final EdgeInsets padding;
+  final double spaceBetweenItems;
+  final BorderRadius borderRadius;
+
   ButtonNavigationBar(
       {required this.children,
       this.padding = EdgeInsets.zero,
       this.spaceBetweenItems = 1.5,
       this.borderRadius = const BorderRadius.all(Radius.circular(16))});
 
-  final List<ButtonNavigationItem> children;
-  final EdgeInsets padding;
-  final double spaceBetweenItems;
-  final BorderRadius borderRadius;
+  @override
+  _ButtonNavigationBarState createState() => _ButtonNavigationBarState();
+}
 
-  /// Builds the content inside of the button, depending on if [icon] and [label] have been supplied.
-  Widget childBuilder(Icon? icon, String? label) {
-    if (icon != null && label != null) {
-      return Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [icon, Text(label)],
-      );
-    } else if (icon != null) {
-      return icon;
-    } else if (label != null) {
-      return Text(label);
-    } else {
-      return SizedBox.shrink();
-    }
-  }
-
-  /// Gives the outer left- and right buttons the edges, which have been set using [borderRadius]
-  BorderRadius borderBuilder(int position) {
-    if (position == 0) {
-      return BorderRadius.only(
-          bottomLeft: borderRadius.bottomLeft, topLeft: borderRadius.topLeft);
-    } else if (position == children.length - 1) {
-      return BorderRadius.only(
-          bottomRight: borderRadius.bottomRight,
-          topRight: borderRadius.topRight);
-    } else {
-      return BorderRadius.zero;
-    }
-  }
-
-  /// Creates the actual buttons for the navigation bar
-  SizedBox rowChild(ButtonNavigationItem item, int position) {
-    return SizedBox(
-      child: ElevatedButton(
-        onPressed: item.onPressed,
-        child: childBuilder(Icon(item.icon), item.label),
-        style: ElevatedButton.styleFrom(
-          primary: item.color,
-          shape:
-              new RoundedRectangleBorder(borderRadius: borderBuilder(position)),
-        ),
-      ),
-      height: item.height,
-      width: item.width,
-    );
-  }
-
-  /// Adds the [rowChild] in one row to be passed to the row widget in [build]
+class _ButtonNavigationBarState extends State<ButtonNavigationBar> {
+  /// Adds the [rowChildBuilder] in one row to be passed to the row widget in [build]
   List<Widget> rowChildren(List<ButtonNavigationItem> children) {
     List<Widget> rowChildren = new List.empty(growable: true);
     for (int i = 0; i < children.length; i++) {
-      rowChildren.add(rowChild(children[i], i));
+      rowChildren.add(NavBarBuilder().rowChildBuilder(
+          children[i], i, children.length, widget.borderRadius));
       if (i != children.length - 1) {
         rowChildren.add(Padding(
-            padding: EdgeInsets.symmetric(horizontal: spaceBetweenItems)));
+            padding:
+                EdgeInsets.symmetric(horizontal: widget.spaceBetweenItems)));
       }
     }
     return rowChildren;
@@ -94,11 +56,11 @@ class ButtonNavigationBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: padding,
+      padding: widget.padding,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: rowChildren(children),
+        crossAxisAlignment: CrossAxisAlignment.end,
+        children: rowChildren(widget.children),
       ),
     );
   }
@@ -111,8 +73,22 @@ class ButtonNavigationBar extends StatelessWidget {
 /// [color] sets the color of the button. Buttons in the same menu can have different colors.
 /// [height] and [width] set the dimensions of the button. If left emtpy, height is 48 and with 72.
 /// [onPressed] sets the action of the button when pressed.
+/// [collapseButton] allows to customize the button which collapses the expanded buttons again. onPressed of a widget is always overwritten when using it here.
+/// [expandableSpacing] can be used to define the spacing between the expandable buttons.
+/// [verticalOffset] can be used to define the spacing between the [ButtonNavigationItem] and the first expandable Item.
 
 class ButtonNavigationItem {
+  final String? label;
+  final IconData? icon;
+  final Color? color;
+  final double height;
+  final double width;
+  final VoidCallback? onPressed;
+  final List<Widget>? children;
+  final ButtonNavigationItem? collapseButton;
+  final double expandableSpacing;
+  final double verticalOffset;
+
   ButtonNavigationItem({
     this.label,
     this.icon,
@@ -120,12 +96,20 @@ class ButtonNavigationItem {
     this.height = 48,
     this.width = 72,
     required this.onPressed,
-  });
+  })  : children = null,
+        collapseButton = null,
+        expandableSpacing = 0,
+        verticalOffset = 0;
 
-  final String? label;
-  final IconData? icon;
-  final Color? color;
-  final double height;
-  final double width;
-  final VoidCallback onPressed;
+  ButtonNavigationItem.expandable(
+      {this.label,
+      this.icon,
+      this.color,
+      this.height = 48,
+      this.width = 72,
+      required this.children,
+      this.collapseButton,
+      this.expandableSpacing = 50.0,
+      this.verticalOffset = 50.0})
+      : onPressed = null;
 }

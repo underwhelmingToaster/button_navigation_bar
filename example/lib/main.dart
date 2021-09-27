@@ -1,4 +1,5 @@
 import 'package:button_navigation_bar/button_navigation_bar.dart';
+import 'package:button_navigation_bar/button_navigation_expandable.dart';
 import 'package:example/card_service.dart';
 import 'package:example/sub_pages/subpage1.dart';
 import 'package:example/sub_pages/subpage2.dart';
@@ -70,13 +71,23 @@ class _MyHomePageState extends State<MyHomePage> {
                   cardCounter++;
                 });
               }),
-          ButtonNavigationItem(
-              icon: Icons.view_stream_sharp,
-              onPressed: () {
-                setState(() {
-                  cardCounter = 2;
-                });
-              }),
+          ButtonNavigationItem.expandable(
+              expandableSpacing: 56.0,
+              verticalOffset: 56.0,
+              icon: Icons.expand_less,
+              collapseButton: ButtonNavigationItem(
+                  onPressed: () {}, color: Colors.blueGrey, icon: Icons.close),
+              children: [
+                ButtonNavigationExpandable(
+                  onPressed: () {},
+                  label: "Option 1",
+                  height: 40,
+                  width: 128,
+                  icon: Icons.info,
+                ),
+                ButtonNavigationExpandable(
+                    onPressed: () {}, height: 40, width: 96, label: "Option 2"),
+              ]),
           ButtonNavigationItem(
               icon: Icons.remove,
               onPressed: () {
@@ -87,13 +98,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 });
               }),
           ButtonNavigationItem(
-              icon: Icons.search,
+              icon: Icons.view_stream_sharp,
               onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (BuildContext context) => SubPageTwo()));
-              })
+                setState(() {
+                  cardCounter = 2;
+                });
+              }),
         ],
       ),
     );
@@ -131,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     context,
                     MaterialPageRoute(
                         builder: (BuildContext context) => SubPageTwo()));
-              })
+              }),
         ],
       ),
     );
