@@ -9,7 +9,7 @@ Implementation is easy and enables a customizable look.
 When using this Widget as a Navbar, the 'floatingactionbutton' property of a Scaffold() can be used for 
 desired positioning of the Widget, as seen in the two examples below.
 
-![Floating Navbar](https://raw.githubusercontent.com/underwhelmingToaster/button_navigation_bar/master/example/images/floatingDemo.png "Floating Navbar") |![Docked Navbar](https://raw.githubusercontent.com/underwhelmingToaster/button_navigation_bar/master/example/images/dockedDemo.png "Docked Navbar") |![Expandable Demo](https://raw.githubusercontent.com/underwhelmingToaster/button_navigation_bar/master/example/images/expandableDemo.png "Expandable Demo")
+![Floating Navbar](https://raw.githubusercontent.com/underwhelmingToaster/button_navigation_bar/master/example/images/floatingDemo.png "Floating Navbar") |![Docked Navbar](https://raw.githubusercontent.com/underwhelmingToaster/button_navigation_bar/master/example/images/dockedDemo.png "Docked Navbar") |![Expandable Demo](https://raw.githubusercontent.com/underwhelmingToaster/button_navigation_bar/master/example/images/expandableDemo.png "Expandable Demo") 
 ----------|----------|---------
 Floating Navbar | Docked Navbar | Expandable menu buttons
 
