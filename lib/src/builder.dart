@@ -4,7 +4,7 @@ import '../button_navigation_bar.dart';
 import '../button_navigation_expandable.dart';
 import 'animation_controller.dart';
 
-/// Class containing multiple builder functions, so both
+/// Class containing multiple builder functions, so they can be used by multiple widgets.
 class NavBarBuilder {
   /// Checks if [item] is a expandable button and returns a [SizedBox].
   /// SizedBox contains a [ElevatedButton] when [item] doesn't have any children.
@@ -54,6 +54,7 @@ class NavBarBuilder {
     );
   }
 
+  /// Creates an ElevatedButton and uses the [childBuilder] to generate a child.
   Widget buildExpandingButton(ButtonNavigationExpandable item) {
     return ElevatedButton(
         onPressed: item.onPressed, child: childBuilder(item.icon, item.label));
@@ -75,14 +76,14 @@ class NavBarBuilder {
   }
 
   /// Builds the content inside of the button, depending on if [icon] and [label] have been supplied.
-  Widget childBuilder(IconData? icon, String? label) {
+  Widget childBuilder(Icon? icon, String? label) {
     if (icon != null && label != null) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [Icon(icon), Text(label)],
+        children: [icon, Text(label)],
       );
     } else if (icon != null) {
-      return Icon(icon);
+      return icon;
     } else if (label != null) {
       return Text(label);
     } else {
