@@ -1,7 +1,9 @@
 import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:button_navigation_bar/button_navigation_bar.dart';
 
+/// Widget which can be used as a normal button, but is intended for use as a expandable button in a [ButtonNavigationBar]
 class ButtonNavigationExpandable extends StatelessWidget {
   ButtonNavigationExpandable({
     this.label,
@@ -12,10 +14,15 @@ class ButtonNavigationExpandable extends StatelessWidget {
     required this.onPressed,
   });
 
+  /// The [label] defines the text inside of the button.
   final String? label;
+  /// The icon inside of the button.
   final IconData? icon;
+  /// The color of the button.
   final Color? color;
+  /// Height of the button.
   final double? height;
+  /// Width of the button.
   final double? width;
   final VoidCallback onPressed;
 
