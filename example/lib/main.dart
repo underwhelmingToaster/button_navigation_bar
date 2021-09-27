@@ -72,8 +72,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 });
               }),
           ButtonNavigationItem.expandable(
-              expandableSpacing: 50.0,
-              verticalOffset: 50.0,
+              expandableSpacing: 56.0,
+              verticalOffset: 56.0,
               icon: Icons.expand_less,
               collapseButton: ButtonNavigationItem(
                   onPressed: () { },
@@ -83,28 +83,32 @@ class _MyHomePageState extends State<MyHomePage> {
               children: [
             ButtonNavigationExpandable(
               onPressed: () { },
-              label: "Label 1",
+              label: "Option 1",
+              height: 40,
+              width: 128,
               icon: Icons.info,
             ),
             ButtonNavigationExpandable(
               onPressed: () { },
-              label: "Label 2"
+              height: 40,
+                width: 96,
+              label: "Option 2"
             ),
           ]),
+        ButtonNavigationItem(
+            icon: Icons.remove,
+            onPressed: () {
+              setState(() {
+                if (cardCounter > 1) {
+                  cardCounter--;
+                }
+              });
+            }),
           ButtonNavigationItem(
               icon: Icons.view_stream_sharp,
               onPressed: () {
                 setState(() {
                   cardCounter = 2;
-                });
-              }),
-          ButtonNavigationItem(
-              icon: Icons.remove,
-              onPressed: () {
-                setState(() {
-                  if (cardCounter > 1) {
-                    cardCounter--;
-                  }
                 });
               }),
         ],
