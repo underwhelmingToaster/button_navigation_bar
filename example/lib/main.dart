@@ -57,7 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
             topRight: Radius.circular(10), topLeft: Radius.circular(10)),
         children: [
           ButtonNavigationItem(
-              icon: Icons.map_outlined,
+              icon: Icon(Icons.map_outlined),
               onPressed: () {
                 Navigator.push(
                     context,
@@ -65,7 +65,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         builder: (BuildContext context) => SubPageOne()));
               }),
           ButtonNavigationItem(
-              icon: Icons.add,
+              icon: Icon(Icons.add),
               onPressed: () {
                 setState(() {
                   cardCounter++;
@@ -74,22 +74,22 @@ class _MyHomePageState extends State<MyHomePage> {
           ButtonNavigationItem.expandable(
               expandableSpacing: 56.0,
               verticalOffset: 56.0,
-              icon: Icons.expand_less,
+              icon: Icon(Icons.expand_less),
               collapseButton: ButtonNavigationItem(
-                  onPressed: () {}, color: Colors.blueGrey, icon: Icons.close),
+                  onPressed: () {}, color: Colors.blueGrey, icon: Icon(Icons.close)),
               children: [
                 ButtonNavigationExpandable(
                   onPressed: () {},
                   label: "Option 1",
                   height: 40,
                   width: 128,
-                  icon: Icons.info,
+                  icon: Icon(Icons.info),
                 ),
                 ButtonNavigationExpandable(
                     onPressed: () {}, height: 40, width: 96, label: "Option 2"),
               ]),
           ButtonNavigationItem(
-              icon: Icons.remove,
+              icon: Icon(Icons.remove),
               onPressed: () {
                 setState(() {
                   if (cardCounter > 1) {
@@ -98,7 +98,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 });
               }),
           ButtonNavigationItem(
-              icon: Icons.view_stream_sharp,
+              icon: Icon(Icons.view_stream_sharp),
               onPressed: () {
                 setState(() {
                   cardCounter = 2;
@@ -118,7 +118,7 @@ class _MyHomePageState extends State<MyHomePage> {
         borderRadius: BorderRadius.all(Radius.circular(10)),
         children: [
           ButtonNavigationItem(
-              icon: Icons.map_outlined,
+              icon: Icon(Icons.map_outlined),
               onPressed: () {
                 Navigator.push(
                     context,
@@ -126,7 +126,7 @@ class _MyHomePageState extends State<MyHomePage> {
                         builder: (BuildContext context) => SubPageOne()));
               }),
           ButtonNavigationItem(
-              icon: Icons.add,
+              icon: Icon(Icons.add),
               label: "Add a card",
               width: 140,
               onPressed: () {
@@ -135,7 +135,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 });
               }),
           ButtonNavigationItem(
-              icon: Icons.search,
+              icon: Icon(Icons.search),
               onPressed: () {
                 Navigator.push(
                     context,

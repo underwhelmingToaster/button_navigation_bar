@@ -69,7 +69,7 @@ class ButtonNavigationItem {
   /// The [label] is the text displayed on the button. If empty, no text is displayed on the button.
   final String? label;
   /// [icon] displays a passed Icon of the label text.
-  final IconData? icon;
+  final Icon? icon;
   /// [color] sets the color of the button. Buttons in the same menu can have different colors.
   final Color? color;
   /// [height] and [width] set the dimensions of the button. If left emtpy, height is 48 and with 72.

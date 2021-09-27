@@ -107,7 +107,7 @@ class _ExpandableRowChildButtonState extends State<ExpandableRowChildButton>
     if (collapseButton == null) {
       collapseButton = new ButtonNavigationItem(
           onPressed: _toggle,
-          icon: Icons.close); // Defining the default collapse button
+          icon: Icon(Icons.close)); // Defining the default collapse button
     } else {
       collapseButton = new ButtonNavigationItem(
           onPressed: _toggle,

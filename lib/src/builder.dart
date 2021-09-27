@@ -76,14 +76,14 @@ class NavBarBuilder {
   }
 
   /// Builds the content inside of the button, depending on if [icon] and [label] have been supplied.
-  Widget childBuilder(IconData? icon, String? label) {
+  Widget childBuilder(Icon? icon, String? label) {
     if (icon != null && label != null) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [Icon(icon), Text(label)],
+        children: [icon, Text(label)],
       );
     } else if (icon != null) {
-      return Icon(icon);
+      return icon;
     } else if (label != null) {
       return Text(label);
     } else {

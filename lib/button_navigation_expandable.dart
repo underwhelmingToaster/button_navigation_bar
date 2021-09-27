@@ -17,7 +17,7 @@ class ButtonNavigationExpandable extends StatelessWidget {
   /// The [label] defines the text inside of the button.
   final String? label;
   /// The icon inside of the button.
-  final IconData? icon;
+  final Icon? icon;
   /// The color of the button.
   final Color? color;
   /// Height of the button.
@@ -26,18 +26,18 @@ class ButtonNavigationExpandable extends StatelessWidget {
   final double? width;
   final VoidCallback onPressed;
 
-  Widget _childBuilder(IconData? icon, String? label) {
+  Widget _childBuilder(Icon? icon, String? label) {
     if (icon != null && label != null) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(icon),
+          icon,
           Padding(padding: EdgeInsets.symmetric(horizontal: 2)),
           Text(label)
         ],
       );
     } else if (icon != null) {
-      return Icon(icon);
+      return icon;
     } else if (label != null) {
       return Text(label);
     } else {
