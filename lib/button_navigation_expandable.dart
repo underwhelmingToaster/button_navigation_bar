@@ -7,23 +7,26 @@ class ButtonNavigationExpandable extends StatelessWidget {
     this.label,
     this.icon,
     this.color,
-    this.height = 40,
-    this.width = 72,
+    this.height,
+    this.width,
     required this.onPressed,
   });
 
   final String? label;
   final IconData? icon;
   final Color? color;
-  final double height;
-  final double width;
+  final double? height;
+  final double? width;
   final VoidCallback onPressed;
 
-  Widget childBuilder(IconData? icon, String? label) {
+  Widget _childBuilder(IconData? icon, String? label) {
     if (icon != null && label != null) {
       return Row(
         mainAxisAlignment: MainAxisAlignment.center,
-        children: [Icon(icon), Text(label)],
+        children: [
+          Icon(icon),
+          Padding(padding: EdgeInsets.symmetric(horizontal: 2)),
+          Text(label)],
       );
     } else if (icon != null) {
       return Icon(icon);
@@ -34,6 +37,16 @@ class ButtonNavigationExpandable extends StatelessWidget {
     }
   }
 
+  ButtonStyle? _buttonStyle (Color? color) {
+    if(color != null) {
+      ButtonStyle(
+        foregroundColor: MaterialStateProperty.all<Color>(color),
+      );
+    } else {
+      return null;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -41,7 +54,8 @@ class ButtonNavigationExpandable extends StatelessWidget {
       height: height,
       child: ElevatedButton(
         onPressed: onPressed,
-        child: childBuilder(icon, label),
+        style: _buttonStyle(color),
+        child: _childBuilder(icon, label),
       ),
     );
   }

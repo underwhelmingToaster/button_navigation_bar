@@ -75,8 +75,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ButtonNavigationExpandable(
               onPressed: () { },
               label: "Label 1",
-              icon: Icons.label,
-              width: 100,
+              icon: Icons.info,
             ),
             ButtonNavigationExpandable(
               onPressed: () { },
