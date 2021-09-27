@@ -13,3 +13,9 @@
 ## 0.0.5
 * Expanded readme
 * Improved example
+
+## 0.1.0
+* Added expandable buttons
+* Added button_navigation_expandable.dart
+* Usability improvements
+* Improved README

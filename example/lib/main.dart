@@ -76,34 +76,27 @@ class _MyHomePageState extends State<MyHomePage> {
               verticalOffset: 56.0,
               icon: Icons.expand_less,
               collapseButton: ButtonNavigationItem(
-                  onPressed: () { },
-                  color: Colors.blueGrey,
-                  icon: Icons.close
-              ),
+                  onPressed: () {}, color: Colors.blueGrey, icon: Icons.close),
               children: [
-            ButtonNavigationExpandable(
-              onPressed: () { },
-              label: "Option 1",
-              height: 40,
-              width: 128,
-              icon: Icons.info,
-            ),
-            ButtonNavigationExpandable(
-              onPressed: () { },
-              height: 40,
-                width: 96,
-              label: "Option 2"
-            ),
-          ]),
-        ButtonNavigationItem(
-            icon: Icons.remove,
-            onPressed: () {
-              setState(() {
-                if (cardCounter > 1) {
-                  cardCounter--;
-                }
-              });
-            }),
+                ButtonNavigationExpandable(
+                  onPressed: () {},
+                  label: "Option 1",
+                  height: 40,
+                  width: 128,
+                  icon: Icons.info,
+                ),
+                ButtonNavigationExpandable(
+                    onPressed: () {}, height: 40, width: 96, label: "Option 2"),
+              ]),
+          ButtonNavigationItem(
+              icon: Icons.remove,
+              onPressed: () {
+                setState(() {
+                  if (cardCounter > 1) {
+                    cardCounter--;
+                  }
+                });
+              }),
           ButtonNavigationItem(
               icon: Icons.view_stream_sharp,
               onPressed: () {

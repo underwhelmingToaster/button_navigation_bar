@@ -26,7 +26,8 @@ class ButtonNavigationExpandable extends StatelessWidget {
         children: [
           Icon(icon),
           Padding(padding: EdgeInsets.symmetric(horizontal: 2)),
-          Text(label)],
+          Text(label)
+        ],
       );
     } else if (icon != null) {
       return Icon(icon);
@@ -37,8 +38,8 @@ class ButtonNavigationExpandable extends StatelessWidget {
     }
   }
 
-  ButtonStyle? _buttonStyle (Color? color) {
-    if(color != null) {
+  ButtonStyle? _buttonStyle(Color? color) {
+    if (color != null) {
       ButtonStyle(
         foregroundColor: MaterialStateProperty.all<Color>(color),
       );

@@ -96,24 +96,20 @@ class ButtonNavigationItem {
     this.height = 48,
     this.width = 72,
     required this.onPressed,
-  }) :
-    children = null,
-    collapseButton = null,
-    expandableSpacing = 0,
-    verticalOffset = 0;
+  })  : children = null,
+        collapseButton = null,
+        expandableSpacing = 0,
+        verticalOffset = 0;
 
-  ButtonNavigationItem.expandable({
-    this.label,
-    this.icon,
-    this.color,
-    this.height = 48,
-    this.width = 72,
-    required this.children,
-    this.collapseButton,
-    this.expandableSpacing = 50.0,
-    this.verticalOffset = 50.0
-  }) : onPressed = null;
+  ButtonNavigationItem.expandable(
+      {this.label,
+      this.icon,
+      this.color,
+      this.height = 48,
+      this.width = 72,
+      required this.children,
+      this.collapseButton,
+      this.expandableSpacing = 50.0,
+      this.verticalOffset = 50.0})
+      : onPressed = null;
 }
-
-
-

@@ -88,14 +88,24 @@ class _ExpandableRowChildButtonState extends State<ExpandableRowChildButton>
   }
 
   /// Builds the button which gets displayed when the expandable button gets clicked. Clicking this button will close the expandable again.
-  Widget _buildTapToCloseFab(ButtonNavigationItem item, int position, int navBarLength, BorderRadius borderRadius) {
+  Widget _buildTapToCloseFab(ButtonNavigationItem item, int position,
+      int navBarLength, BorderRadius borderRadius) {
     ButtonNavigationItem? collapseButton = item.collapseButton;
-    if(collapseButton == null) {
-      collapseButton = new ButtonNavigationItem(onPressed: _toggle, icon: Icons.close); // Defining the default collapse button
+    if (collapseButton == null) {
+      collapseButton = new ButtonNavigationItem(
+          onPressed: _toggle,
+          icon: Icons.close); // Defining the default collapse button
     } else {
-      collapseButton = new ButtonNavigationItem(onPressed: _toggle, icon: collapseButton.icon, color: collapseButton.color, width: collapseButton.width, height: collapseButton.height, label: collapseButton.label); // Overriding the onPressed parameter
+      collapseButton = new ButtonNavigationItem(
+          onPressed: _toggle,
+          icon: collapseButton.icon,
+          color: collapseButton.color,
+          width: collapseButton.width,
+          height: collapseButton.height,
+          label: collapseButton.label); // Overriding the onPressed parameter
     }
-    return NavBarBuilder().buildRowChildButton(collapseButton, position, navBarLength, borderRadius);
+    return NavBarBuilder().buildRowChildButton(
+        collapseButton, position, navBarLength, borderRadius);
   }
 
   /// Builds the Buttons that are displayed when the [ButtonNavigationItem.expandable] gets clicked.
@@ -103,9 +113,7 @@ class _ExpandableRowChildButtonState extends State<ExpandableRowChildButton>
     final children = <Widget>[];
     final count = widget.children.length;
     final step = widget.item.expandableSpacing;
-    for (var i = 0;
-        i < count;
-        i++) {
+    for (var i = 0; i < count; i++) {
       children.add(
         _ExpandingActionButton(
           directionInDegrees: 90,
