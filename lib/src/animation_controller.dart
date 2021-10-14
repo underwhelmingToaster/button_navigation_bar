@@ -5,7 +5,6 @@ import 'package:flutter/cupertino.dart';
 import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
-
 /// This Widget is generated from a [ButtonNavigationItem.expandable].
 /// When clicked, it expands to reveal child widgets (for example a [ButtonNavigationExpandable]).
 /// This widget should not be initialized directly from user code.

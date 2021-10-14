@@ -24,3 +24,6 @@
 * Replaced all Icondata? params with Icon?. This allows the user to easily set icon color and size.
 * Improved dartdoc
 * Improved code formatting
+
+## 0.1.2
+* Improved README
