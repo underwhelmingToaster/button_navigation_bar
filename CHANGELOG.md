@@ -27,3 +27,6 @@
 
 ## 0.1.2
 * Improved README
+
+## 0.1.3
+* BorderRadius now gets correctly applied if only one item in the button_navigation_bar.

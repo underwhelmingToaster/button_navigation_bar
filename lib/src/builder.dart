@@ -63,7 +63,13 @@ class NavBarBuilder {
   /// Gives the outer left- and right buttons the edges, which have been set using [ButtonNavigationBar.borderRadius]
   BorderRadius borderBuilder(
       int position, int childrenLength, BorderRadius borderRadius) {
-    if (position == 0) {
+    if (childrenLength == 1) {
+      return BorderRadius.only(
+          bottomLeft: borderRadius.bottomLeft,
+          topLeft: borderRadius.topLeft,
+          topRight: borderRadius.topRight,
+          bottomRight: borderRadius.bottomRight);
+    } else if (position == 0) {
       return BorderRadius.only(
           bottomLeft: borderRadius.bottomLeft, topLeft: borderRadius.topLeft);
     } else if (position == childrenLength - 1) {
